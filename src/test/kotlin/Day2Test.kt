@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 internal class Day2Test {
-	private val input = readInput("day2-input-test.txt")
+	private val input = readInput("day2-input-test.txt").map { parseCommand(it) }
 
 	@Test
 	fun firstShouldReturnProperAnswerForTestData() {
