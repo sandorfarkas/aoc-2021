@@ -1,26 +1,17 @@
-class Day1(private val input: List<String> = readInput("day1-input.txt")) {
+class Day1(private val input: List<Int> = readInput("day1-input.txt").map { it.toInt() }) {
 
 	fun first(): Int {
-		var counter = 0;
-		var previousItem = input[0];
-		input.forEach {
-			if (it.toInt() > previousItem.toInt()) counter++
-			previousItem = it
-		}
-		return counter
+		return countIncrease(input)
 	}
 
 	fun second(): Int {
-		var counter = 0;
-		var previousSum = input[0].toInt() + input[1].toInt() + input[2].toInt()
-		for (i in 0..input.size - 3) {
-			val sum = input[i].toInt() + input[i + 1].toInt() + input[i + 2].toInt()
+		return countIncrease(input.windowed(3) { it.sum() })
+	}
 
-			if (sum > previousSum) counter++
-
-			previousSum = sum
-		}
-		return counter
+	private fun countIncrease(input: List<Int>): Int {
+		return input
+			.windowed(2)
+			.count { (a, b) -> b > a }
 	}
 }
 
