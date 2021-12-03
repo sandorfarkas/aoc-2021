@@ -14,33 +14,28 @@ class Day3(private val input: List<String> = readInput("day3-input.txt")) {
 	}
 
 	fun second(): Int {
-		val oxygen = getRating(input, '1', '0');
-		val co2 = getRating(input, '0', '1');
+		val oxygen = input.getRating { ones, zeros -> if (ones >= zeros) '1' else '0' }
+		val co2 = input.getRating { ones, zeros -> if (ones >= zeros) '0' else '1' }
 
 		return oxygen.toInt(2) * co2.toInt(2)
 	}
 
 	private fun countOnesAtPosition(list: List<String>, atPosition: Int): Int {
 		var count = 0;
-		list.forEach{
+		list.forEach {
 			if (it[atPosition] == '1') count++
 		}
 		return count
 	}
 
-	private fun getRating(originalList: List<String>, primaryValueToCheckFor: Char, secondaryValueToCheckFor: Char): String {
+	private fun List<String>.getRating(desiredValue: (ones: Int, zeros: Int) -> Char): String {
 		var pos = 0
-		var list = originalList.toList()
+		var list = this.toList()
 
 		while (list.size > 1) {
 			val ones = countOnesAtPosition(list, pos)
 			val zeros = list.size - ones
-
-			list = if (ones >= zeros)
-				list.filter { it[pos] == primaryValueToCheckFor }
-			else
-				list.filter { it[pos] == secondaryValueToCheckFor }
-
+			list = list.filter { it[pos] == desiredValue(ones, zeros) }
 			pos++
 		}
 
