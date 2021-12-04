@@ -12,10 +12,15 @@ fun main() {
 //	println(day2.first())
 //	println(day2.second())
 
-	println("~= Day 3 =~")
-	val day3 = Day3()
-	println(day3.first())
-	println(day3.second())
+//	println("~= Day 3 =~")
+//	val day3 = Day3()
+//	println(day3.first())
+//	println(day3.second())
+
+	println("~= Day 4 =~")
+	val day4 = Day4()
+	println(day4.first())
+	println(day4.second())
 
 }
 
