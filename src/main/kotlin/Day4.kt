@@ -1,14 +1,14 @@
 class Day4(private val input: List<String> = readInput("day4-input.txt")) {
-	fun first(): Int {
-		val bingo = Bingo(
-			input[0].split(",").map { it.toInt() },
-			input.slice(2 until input.size).windowed(5, 6).map { boardOf(it) }
-		)
+	private val bingo = Bingo(
+		input[0].split(",").map { it.toInt() },
+		input.slice(2 until input.size).windowed(5, 6).map { boardOf(it) }
+	)
 
-		for(i in 5 until bingo.draws.size) {
-			bingo.board.forEach{b->
-				if (b.isBingo(bingo.draws.slice(0..i))) {
-					return bingo.draws[i] * b.notDrawnSum(bingo.draws.slice(0..i))
+	fun first(): Int {
+		for(drawIndex in 5 until bingo.draws.size) {
+			bingo.board.forEach{board->
+				if (board.isBingo(bingo.draws.slice(0..drawIndex))) {
+					return bingo.draws[drawIndex] * board.notDrawnSum(bingo.draws.slice(0..drawIndex))
 				}
 			}
 		}
@@ -19,10 +19,6 @@ class Day4(private val input: List<String> = readInput("day4-input.txt")) {
 		class DrawBoard(val boardIndex: Int, val drawIndex: Int)
 
 		val wins: MutableList<DrawBoard> = mutableListOf()
-		val bingo = Bingo(
-			input[0].split(",").map { it.toInt() },
-			input.slice(2 until input.size).windowed(5, 6).map { boardOf(it) }
-		)
 
 		for(i in 5 until bingo.draws.size) {
 			bingo.board.forEachIndexed{index, b->
@@ -50,7 +46,6 @@ class Bingo(val draws: List<Int>, val board: List<Board>)
 
 class Board(private val numbers: Array<IntArray>) {
 	fun isBingo(draws: List<Int>): Boolean {
-		if (draws.size < 5) return false
 		numbers.forEach { row ->
 			if (draws.containsAll(row.toList())) return true
 		}
