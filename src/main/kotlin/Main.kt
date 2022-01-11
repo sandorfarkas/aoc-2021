@@ -2,10 +2,31 @@ import kotlin.io.path.Path
 import kotlin.io.path.readLines
 
 fun main() {
-	println("~= Day 9 =~")
-	val day9 = Day9()
-	println(day9.first())
-	println(day9.second())
+	println("~= Day 12 =~")
+	val day12 = Day12()
+	println(day12.first())
+//	println(day12.second())
+
+//	println("~= Day 11 =~")
+//	val day11 = Day11()
+//	println(day11.first())
+//	println(day11.second())
+
+//	println("~= Day 10 =~")
+//	val day10 = Day10()
+//	println(day10.first())
+//	println(day10.second())
+
+//	println("~= Day 9 =~")
+//	val day9 = Day9()
+//	println(day9.first())
+//	println(day9.second())
+
+//	println("~= Day 8 =~")
+//	val day8 = Day8()
+//	println(day8.first())
+//	println(day8.second())
+
 
 //	println("~= Day 7 =~")
 //	val day7 = Day7()
